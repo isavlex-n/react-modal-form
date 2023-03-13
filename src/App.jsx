@@ -50,6 +50,20 @@ function App() {
       }
     })
     setJsonFormData(JSON.stringify(formData))
+    setFields({
+      name: {
+        valid: false,
+        value: '',
+      },
+      phone: {
+        valid: false,
+        value: '',
+      },
+    })
+    setErrors({
+      phone: null,
+      name: null,
+    })
     setModal(false)
   }
 
@@ -71,9 +85,11 @@ function App() {
   return (
     <>
       <pre>{jsonFormData}</pre>
-      <button onClick={() => setModal(true)} className="button">Обратная связь</button>
+      <button onClick={() => setModal(true)} className="button">
+        Обратная связь
+      </button>
       <Modal active={modal} setActive={setModal}>
-        <h1>Feedback</h1>
+        <h1>Обратная связь</h1>
         <form className="form" onSubmit={formHandler}>
           <BaseFieldText
             name="name"
@@ -94,7 +110,11 @@ function App() {
             onBlur={blurHandler}
             onFocus={focusHandler}
           />
-          <button type="submit" className="button" disabled={!isFormValid(fields)}>
+          <button
+            type="submit"
+            className="button"
+            disabled={!isFormValid(fields)}
+          >
             Отправить
           </button>
         </form>
